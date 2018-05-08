@@ -6,9 +6,9 @@ categories: Docker
 ---
 
 
-#操作容器
+# 操作容器
 ---
-###启动容器
+### 启动容器
 
 启动容器并启动bash（交互方式）:
 
@@ -21,7 +21,7 @@ categories: Docker
 ps：这里的 image_name 包含了tag：hello.demo.kdemo:v1.0
 附着到容器
 
-###附着到正在运行的容器
+### 附着到正在运行的容器
 
     docker attach <id、container_name>
 
@@ -41,7 +41,7 @@ ps：docker exec是如此的有用，以至于我们通常是将其封装为一�
 
     $./indocker.sh 9cf7b563f689 
 
-###查看容器日志
+### 查看容器日志
 
     docker logs <id/container_name>
 
@@ -49,7 +49,7 @@ ps：docker exec是如此的有用，以至于我们通常是将其封装为一�
 
     docker logs -f <id/container_name> (类似 tail -f) (带上时间戳-t）
 
-###查看容器
+### 查看容器
 
 列出当前所有正在运行的container
 
@@ -109,33 +109,33 @@ ps：docker exec是如此的有用，以至于我们通常是将其封装为一�
     $docker kill Name/ID  
     $docker restart name/ID
 
-#操作Image
+# 操作Image
 ---
-###列出镜像
+### 列出镜像
 
     $sudo docker images
 
     -a, –all=false Show all images; –no-trunc=false Don’t truncate output; -q, –quiet=false Only show numeric IDs
 
-###从dockerhub检索image
+### 从dockerhub检索image
 
     $docker search image_name
 
-###下载image
+### 下载image
 
     $docker pull image_name
 
-###删除一个或者多个镜像;
+### 删除一个或者多个镜像;
 
     $docker rmi image_name  
 
     -f, –force=false Force; –no-prune=false Do not delete untagged parents
 
-###显示一个镜像的历史;
+### 显示一个镜像的历史;
 
     $docker history image_name
 
-###发布docker镜像
+### 发布docker镜像
 
     $docker push new_image_name
 
@@ -143,29 +143,29 @@ ps:要发布到私有Registry中的镜像，在镜像命名中需要带上Regist
 
 $docker push dockerhub.yourdomain.com:443/hello.demo.kdemo:v1.0
 
-###拉取docker镜像
+### 拉取docker镜像
 
     $docker pull image_name
 
-#网络操作
+# 网络操作
 ---
-###查看docker0的网络(宿主机上操作)
+### 查看docker0的网络(宿主机上操作)
 
     $ip a show docker0
 
-###查看容器的IP地址
+### 查看容器的IP地址
 
     $docker inspect -f '{{ .NetworkSettings.IPAddress }}' <id、container_name>
 
-###附着到容器内部查看其内部ip：
+### 附着到容器内部查看其内部ip：
 
     $ip a show eth0
 
-#查看docker基础信息
+# 查看docker基础信息
 ---
-###查看docker版本
+### 查看docker版本
 
     $docker version
-###查看docker系统的信息
+### 查看docker系统的信息
 
     $docker info
