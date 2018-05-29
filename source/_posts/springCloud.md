@@ -4,6 +4,12 @@ tags: Spring Cloud
 categories: Spring
 ---
 
+## PropertySource
+
+A source of name/value property pairs. The underlying source object may be of any type T that encapsulates properties. Examples include Properties objects, Map objects, ServletContext and ServletConfig objects (for access to init parameters). When working with @Configuration classes that the @PropertySource annotation provides a convenient and declarative way of adding property sources to the enclosing Environment.
+
+The default property source for external configuration added by the bootstrap process is the Config Server, but you can add additional sources by adding beans of type PropertySourceLocator to the bootstrap context (via META-INF/spring.factories). You could use this to insert additional properties from a different server, or from a database, for instance.
+
 ## bootstrap.yml(bootstrap.properties) & application.yml(application.properties)
 
 A Spring Cloud application operates by creating a "bootstrap" context, which is a parent context for the main application. Out of the box it is responsible for loading configuration properties from the external sources, and also decrypting properties in the local external configuration files.
