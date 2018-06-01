@@ -21,6 +21,7 @@ categories: Docker
 查看虚拟机IP
 
     $ docker-machine ip
+
 查看虚拟机环境
 
     $ docker-machine env
@@ -52,7 +53,7 @@ ps：docker exec是如此的有用，以至于我们通常是将其封装为一�
 
     $cat indocker.sh 
     docker exec -t -i $1 /bin/bash
-
+    
     # 查看需要附着的容器id
     $docker ps | less -S
     CONTAINER ID        IMAGE                                                 
