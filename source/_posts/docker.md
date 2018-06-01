@@ -4,7 +4,26 @@ date: 2018-05-08 12:52:08
 tags: Docker
 categories: Docker
 ---
+# 操作虚拟机
 
+列出虚拟机
+
+    $docker-machine ls
+
+启动虚拟机
+
+    $ docker-machine start default
+
+停止虚拟机
+
+    $ docker-machine stop default
+
+查看虚拟机IP
+
+    $ docker-machine ip
+查看虚拟机环境
+
+    $ docker-machine env
 
 # 操作容器
 ---
