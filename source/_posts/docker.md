@@ -43,7 +43,7 @@ ps：这里的 image_name 包含了tag：hello.demo.kdemo:v1.0
 
 ### 附着到正在运行的容器
 
-    docker attach <id、container_name>
+    docker attach <id/container_name>
 
 进入正在运行的容器内部，同时运行bash(比attach更好用)
 
@@ -189,3 +189,72 @@ $docker push dockerhub.yourdomain.com:443/hello.demo.kdemo:v1.0
 ### 查看docker系统的信息
 
     $docker info
+
+# 从容器内拷贝文件到主机
+首先要知道virtualbox与windows的共享目录例如/c/Users。
+
+    $ docker cp <containerId>:/容器内文件path 共享目录  
+启动或未启动的容器都可以拷贝。
+
+# Docker Compose
+Compose is a tool for defining and running multi-container Docker applications. 
+
+查看命令详细参数：例如docker-compose run -h
+
+     -d, --detach              Detached mode: Run containers in the background,
+                               print new container names. Incompatible with
+                               --abort-on-container-exit.
+    --no-color                 Produce monochrome output.
+    --quiet-pull               Pull without printing progress information
+    --no-deps                  Don't start linked services.
+    --force-recreate           Recreate containers even if their configuration
+                               and image haven't changed.
+    --always-recreate-deps     Recreate dependent containers.
+                               Incompatible with --no-recreate.
+    --no-recreate              If containers already exist, don't recreate
+                               them. Incompatible with --force-recreate and -V.
+    --no-build                 Don't build an image, even if it's missing.
+    --no-start                 Don't start the services after creating them.
+    --build                    Build images before starting containers.
+    --abort-on-container-exit  Stops all containers if any container was
+                               stopped. Incompatible with -d.
+    -t, --timeout TIMEOUT      Use this timeout in seconds for container
+                               shutdown when attached or when containers are
+                               already running. (default: 10)
+    -V, --renew-anon-volumes   Recreate anonymous volumes instead of retrieving
+                               data from the previous containers.
+    --remove-orphans           Remove containers for services not defined
+                               in the Compose file.
+    --exit-code-from SERVICE   Return the exit code of the selected service
+                               container. Implies --abort-on-container-exit.
+    --scale SERVICE=NUM        Scale SERVICE to NUM instances. Overrides the
+                               `scale` setting in the Compose file if present.
+
+
+### 启动所有容器
+  
+1.  进入docker-compose.yml所在目录
+2.  docker-compose up
+
+### 停止所有容器
+1.  进入docker-compose.yml所在目录
+2.  docker-compose stop
+
+### 启动或停止指定容器
+    docker-compose [up|stop]  docker-compose.yml中设定的容器名
+### Build
+
+当修改dockerfile或者docker-compose时，运行docker-compose build 重建镜像。
+ 
+### 重新部署容器
+    1. 修改代码，在本地build，生成镜像
+    2. docker-compose up -d --force-recreate --no-deps --build  discovery
+
+
+# 主机访问虚拟机中容器
+  
+  本机运行服务直接访问docker容器是访问不到的，需要虚拟机中转。
+
+  假设本机虚拟网卡地址192.168.152.1，虚拟机运行后对外地址192.168.152.131，其中的各docker容器网段为172.17。
+
+  route add -p 172.17.0.0 mask 255.255.255.0 192.168.152.131    
