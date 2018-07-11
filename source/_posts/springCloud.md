@@ -4,6 +4,9 @@ tags: Spring Cloud
 categories: Spring
 ---
 
+#
+![](1523696433477.png)
+
 ## PropertySource
 
 A source of name/value property pairs. The underlying source object may be of any type T that encapsulates properties. Examples include Properties objects, Map objects, ServletContext and ServletConfig objects (for access to init parameters). When working with @Configuration classes that the @PropertySource annotation provides a convenient and declarative way of adding property sources to the enclosing Environment.
